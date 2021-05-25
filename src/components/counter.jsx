@@ -1,3 +1,4 @@
+import { buildQueries } from '@testing-library/dom';
 import React, { Component } from 'react';
 
 export default class Counter extends Component {
@@ -8,10 +9,16 @@ export default class Counter extends Component {
     render() {
         return (
             <div>
-                <span>{this.formatCount()}</span>
-                <button>Increment</button>;
+                <button className={this.getButtonClasses()}>{this.formatCount()}</button>
+                <button className="btn btn-info m-2">Increment</button>
             </div>
         );
+    }
+
+    getButtonClasses() {
+        let classes = "btn m-2 btn-";
+        classes += (this.state.count === 0) ? "secondary" : "primary";
+        return classes;
     }
 
     formatCount() {
